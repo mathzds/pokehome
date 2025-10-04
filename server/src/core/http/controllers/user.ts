@@ -1,9 +1,8 @@
 import { Hono } from "hono";
-import { CreateUserDTO } from "../../../domain/dto/user/create";
-import UserService from "../../../domain/services/user";
-import { Scalar } from "@scalar/hono-api-reference";
-import { LoginUserDTO } from "../../../domain/dto/user/login";
 import { getCookie, setCookie } from "hono/cookie";
+import { CreateUserDTO } from "../../../domain/dto/user/create";
+import { LoginUserDTO } from "../../../domain/dto/user/login";
+import UserService from "../../../domain/services/user";
 
 const UserController = (app: Hono) => {
   const service = new UserService();
@@ -38,7 +37,12 @@ const UserController = (app: Hono) => {
 
       if (parse) {
         await service.login(parse).then((cookie) => {
-          setCookie(c, "jwt", cookie);
+          setCookie(c, "jwt", cookie, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "Lax",
+            path: "/",
+          });
         });
 
         return c.json({ message: "Logged" }, 200);
