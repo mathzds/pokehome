@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import App from "../App";
-import Dashboard from "../Dashboard";
+import App from "../pages/unauth/App";
+import Dashboard from "../pages/auth/Dashboard";
 import DefaultLayout from "../layouts/default";
-import Login from "../Login";
-import Me from "../Me";
+import Login from "../pages/unauth/Login";
+import Me from "../pages/auth/Me";
 import AuthMiddleware from "../middleware/auth";
 
 const AppRoutes = createBrowserRouter([
