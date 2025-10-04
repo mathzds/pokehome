@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
-import { DatabaseConfig } from "../config/database";
+import { CardEntity } from "../../domain/entities/card";
 import { UserEntity } from "../../domain/entities/user";
+import { DatabaseConfig } from "../config/database";
 
 const AppDataSource = new DataSource({
   type: "sqlite",
@@ -8,7 +9,7 @@ const AppDataSource = new DataSource({
   logger: "formatted-console",
   logging: true,
   synchronize: true,
-  entities: [UserEntity],
+  entities: [UserEntity, CardEntity],
 });
 
 export default AppDataSource;

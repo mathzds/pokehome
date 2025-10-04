@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import Router from "./router/router";
+import { ensureBucket } from "../../infra/minio/minio";
 
 const app = new Hono();
 app.use(
@@ -13,5 +14,7 @@ app.use(
   })
 );
 Router(app);
+
+ensureBucket();
 
 export default app;

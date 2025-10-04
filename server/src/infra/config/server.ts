@@ -1,5 +1,4 @@
 export const ServerConfig = {
-  port: 3000,
-
-  jwtSecret: "secret",
+  port: process.env.PORT,
+  jwtSecret: process.env.JWT_SECRET,
 };
